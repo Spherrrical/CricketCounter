@@ -1,11 +1,12 @@
 {
   "expo": {
     "name": "iOS_App_1",
-    "slug": "iOS_App_1",
+    "slug": "cricketcounter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "owner": "spherical",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -18,7 +19,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.spherical.cricketcounter"
     },
     "android": {
       "adaptiveIcon": {
