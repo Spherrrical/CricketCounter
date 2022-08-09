@@ -2,19 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import React, { useState } from 'react';
 import Runs from "./Runs";
-import Balls from "./Balls"
 import Overs from './Overs';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      {/*<Text style={styles.title}>Cricket Counter - By Musa</Text>*/}
       <StatusBar style="auto" />
       <Runs/>
         <Overs/>
-        <Balls/>
-        <Text style={styles.title}>Cricket Counter - By Musa Malik</Text>
+        <Text style={styles.title}>Cricket Counter - By Musa - v0.4</Text>
+
 
     </View>
 
@@ -31,10 +29,10 @@ const styles = StyleSheet.create({
 
   },
     title: {
-        fontSize: 9,
-        fontWeight: '300',
+        fontSize: 12,
+        fontWeight: '500',
         color: '#FFF',
-        marginTop: 25,
+        marginTop: 33,
     },
     movement: {
         fontSize: 20,

@@ -1,42 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
-import Balls from "./Balls"
-import count1 from "./Balls"
-import BallsCount from "./Balls"
+import {View, Text, Button, StyleSheet, Alert, SafeAreaView} from 'react-native';
 
 const Overs = () => {
-    const [count, setCount] = useState(0);
+    const [overs, setOvers] = useState(0);
+    const [balls, setBalls] = useState(0);
+    useEffect(() => {
+        if (balls > 6) {
+            setBalls(0);
+            setOvers(overs + 1);
+        }
+    })
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Overs: {count} </Text>
-            <Button
-                onPress={() => {setCount(count + 1)}} title="+1 Over"
-            />
-            <View style={styles.buttonseperate}/>
-            <Button
-                onPress={() => {setCount(count - 1)}} title="-1 Over"
-            />
-            <View style={styles.seperate}/>
-            <Button
-                onPress={() => {setCount(0)}} title="Reset Overs"
-            />
-        </View>
+        <SafeAreaView>
+            <View style={styles.container1}>
+                <Text style={styles.title1}>Balls: {balls} </Text>
+                <Button
+                    onPress={() => {setBalls(0), Alert.alert('Balls reset.')}} title="Reset Balls" color="#ff453a"
+                />
+                <View style={styles.buttonseperate1}/>
+                <Button
+                    onPress={() => {setOvers(0), Alert.alert('Overs reset.')}} title="Reset Overs" color="#ff453a"
+                />
+                <View style={styles.buttonseperate1}/>
+                <View style={styles.fixToText1}>
+                    <Button
+                        onPress={() => {setBalls(balls - 1)}} title="-1 Ball"
+                    />
+                    <View style={styles.seperate1}/>
+                    <Button
+                        onPress={() => {setBalls(balls + 1)}}
+                        title="+1 Ball"
+                    />
+                </View>
+                <View style={styles.buttonseperate1}/>
+            </View>
+            <View style={styles.container}>
+                <Text style={styles.title}>Overs: {overs} </Text>
+                <View style={styles.buttonseperate}/>
+            </View>
+        </SafeAreaView>
     );
 }
 
 
 
 const styles = StyleSheet.create({
+    // Balls
+    container1:{
+        marginTop: -80,
+    },
+    title1: {
+        fontSize: 39,
+        fontWeight: '700',
+        color: '#FFF',
+        marginBottom: 42,
+        alignItems: 'flex-start',
+        textAlign: 'center',
+        justifyContent: 'center',
+    },
+    movement1: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    seperate1: {
+        marginVertical: 13,
+        height: 1,
+        width: '1 %',
+        color: '#FFF'
+    },
+    buttonseperate1: {
+        marginVertical: 9,
+        height: 1,
+        width: '1 %',
+        color: '#FFF'
+    },
+    fixToText1: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 40,
+    },
+    // Overs
     container:{
-        marginBottom: 60,
+        marginBottom: -40,
     },
     title: {
-        fontSize: 30,
-        fontWeight: '600',
+        fontSize: 39,
+        fontWeight: '700',
         color: '#FFF',
-        marginBottom: -80,
-        marginTop: -100,
-        height: 150,
+        marginBottom: -120,
+        marginTop: -20,
+        height: 240,
         alignItems: 'center',
         textAlign: 'center',
         justifyContent: 'center',
@@ -58,7 +111,12 @@ const styles = StyleSheet.create({
     },
     moveButton: {
         marginTop: 100,
-    }
+    },
+    fixToText: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 11,
+    },
 });
 
 export default Overs;
