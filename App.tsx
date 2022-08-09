@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, SafeAreaView } from 'react-native';
 import React, { useState } from 'react';
 import Runs from "./Runs";
 import Overs from './Overs';
@@ -7,18 +7,27 @@ import Overs from './Overs';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Runs/>
-        <Overs/>
-        <Text style={styles.title}>Cricket Counter - By Musa - v0.4</Text>
-
-
-    </View>
-
+      <SafeAreaView style={styles.container}>
+              <StatusBar style="auto" />
+              <Runs/>
+              <Overs/>
+              <Text style={styles.title}>Client Version 0.3.0 (8376538) - By Musa</Text>
+      </SafeAreaView>
   );
-
 }
+
+
+
+// <SafeAreaView>
+//     <ScrollView style={styles.container}>
+//         <StatusBar style="auto" />
+//         <Runs/>
+//         <Overs/>
+//         <Text style={styles.title}>Cricket Counter - By Musa - v0.4</Text>
+//     </ScrollView>
+// </SafeAreaView>
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -29,10 +38,10 @@ const styles = StyleSheet.create({
 
   },
     title: {
-        fontSize: 12,
+        fontSize: 10,
         fontWeight: '500',
-        color: '#FFF',
-        marginTop: 33,
+        color: '#c2c2c2',
+        marginTop: 10,
     },
     movement: {
         fontSize: 20,
