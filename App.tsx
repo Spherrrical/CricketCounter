@@ -11,7 +11,7 @@ export default function App() {
               <StatusBar style="auto" />
               <Runs/>
               <Overs/>
-              <Text style={styles.title}>Client Version 0.3.0 (8376538) - By Musa</Text>
+              <Text style={styles.title}>Client Version 1.0.2 - By Musa</Text>
       </SafeAreaView>
   );
 }
