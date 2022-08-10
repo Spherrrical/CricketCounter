@@ -1,30 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, Button, StyleSheet, Alert, SafeAreaView} from 'react-native';
+import {ActionSheetIOS, View, Text, Button, StyleSheet, Alert, SafeAreaView} from 'react-native';
+
 
 const Overs = () => {
     const [overs, setOvers] = useState(0);
     const [balls, setBalls] = useState(0);
+
     useEffect(() => {
         if (balls > 6) {
             setBalls(0);
             setOvers(overs + 1);
         }
     })
+    const onPress = () =>
+        ActionSheetIOS.showActionSheetWithOptions(
+            {
+                options: ["Cancel", "Reset Balls", "Reset Overs"],
+                destructiveButtonIndex: 2,
+                cancelButtonIndex: 0,
+                userInterfaceStyle: "dark",
+            },
+            buttonIndex => {
+                if (buttonIndex === 0) {
+                    // cancel action
+                } else if (buttonIndex === 1) {
+                    setBalls(0)
+                } else if (buttonIndex === 2) {
+                    setOvers(0)
+                }
+
+            }
+        );
     return (
         <SafeAreaView>
             <View style={styles.container1}>
                 <Text style={styles.title1}>Balls: {balls} </Text>
-                <Button
-                    onPress={() => {setBalls(0), Alert.alert('Balls reset.')}} title="Reset Balls" color="#ff453a"
-                />
-                <View style={styles.buttonseperate1}/>
-                <Button
-                    onPress={() => {setOvers(0), Alert.alert('Overs reset.')}} title="Reset Overs" color="#ff453a"
-                />
+                <Button onPress={onPress} title="Reset Menu" color="#ff453a"/>
                 <View style={styles.buttonseperate1}/>
                 <View style={styles.fixToText1}>
                     <Button
-                        onPress={() => {setBalls(balls - 1)}} title="-1 Ball"
+                        onPress={() => {setBalls(balls - 1)}}
+                        title="-1 Ball"
                     />
                     <View style={styles.seperate1}/>
                     <Button
@@ -47,7 +63,7 @@ const Overs = () => {
 const styles = StyleSheet.create({
     // Balls
     container1:{
-        marginTop: -80,
+        marginTop: -99,
     },
     title1: {
         fontSize: 39,

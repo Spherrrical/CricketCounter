@@ -1,15 +1,47 @@
 import React, { useState } from 'react';
-import {View, Text, Button, StyleSheet, Alert, SafeAreaView} from 'react-native';
+import {ActionSheetIOS, View, Text, Button, StyleSheet, Alert, SafeAreaView} from 'react-native';
+
+
 
 const Runs = () => {
-    const [count, setCount] = useState(0);
+    const [runs, setRuns] = useState(0);
     const [target, setTarget] = useState(0);
     const [wide, setWide] = useState(0);
     const [noball, setNoBall] = useState(0);
+    const ONE_SECOND_IN_MS = 1000;
+
+    const PATTERN = [
+        1 * ONE_SECOND_IN_MS,
+        2 * ONE_SECOND_IN_MS,
+        3 * ONE_SECOND_IN_MS
+    ];
+
+    const onPress = () =>
+        ActionSheetIOS.showActionSheetWithOptions(
+            {
+                options: ["Cancel", "Reset No Balls", "Reset Wides", "Reset Runs"],
+                destructiveButtonIndex: 3,
+                cancelButtonIndex: 0,
+                userInterfaceStyle: "dark",
+            },
+            buttonIndex => {
+                if (buttonIndex === 0) {
+                    // cancel action
+                } else if (buttonIndex === 1) {
+                    setNoBall(0)
+                } else if (buttonIndex === 2) {
+                    setWide(0)
+                } else if (buttonIndex == 3) {
+                    setRuns(0)
+                }
+
+            }
+        );
+
     return (
     <SafeAreaView>
         <View style={styles.container}>
-            <Text style={styles.title}>Runs: {count} </Text>
+            <Text style={styles.title}>Runs: {runs} </Text>
             <Text style={styles.target}>Target: {target} </Text>
             <View style={styles.row}>
                 <Text style={styles.row}>W: {wide} </Text>
@@ -18,46 +50,53 @@ const Runs = () => {
             <View style={styles.buttonseperate}/>
             <View style={styles.fixToText}>
                 <Button
-                    onPress={() => {setCount(count + 1),setWide(wide + 1)}}
+                    onPress={() => {setRuns(runs + 1),setWide(wide + 1)}}
                     title="+1 W"
                 />
                 <Button
-                    onPress={() => {setCount(count - 1),setWide(wide - 1)}}
+                    onPress={() => {setRuns(runs - 1),setWide(wide - 1)}}
                     title="-1 W"
                 />
                 <Button
-                    onPress={() => {setCount(count - 1)}}
+                    onPress={() => {setRuns(runs - 1)}}
                     title="-1 Run"
                 />
                 <Button
-                    onPress={() => {setCount(count + 1)}}
+                    onPress={() => {setRuns(runs + 1)}}
                     title="+1 Run"
                 />
                 <Button
-                    onPress={() => {setCount(count - 1),setNoBall(noball - 1)}}
+                    onPress={() => {setRuns(runs - 1),setNoBall(noball - 1)}}
                     title="-1 NB"
                 />
                 <Button
-                    onPress={() => {setCount(count + 1),setNoBall(noball + 1)}}
+                    onPress={() => {setRuns(runs + 1),setNoBall(noball + 1)}}
                     title="+1 NB"
                 />
 
             </View>
-            <Button
-                onPress={() => {setCount(0), Alert.alert('Runs reset.')}} title="Reset Runs" color="#ff453a"
-            />
+
+            <Button onPress={onPress} title="Reset Menu" color="#ff453a"/>
             <View style={styles.buttonseperate}/>
             <Button
-                onPress={() => {setWide(0), Alert.alert('Wides reset.')}} title="Reset Wides" color="#ff453a"
+                onPress={() => {setTarget(runs), Alert.alert('Target set/reset.')}} title="Set/Reset Target" color="#64d3ff"
             />
-            <View style={styles.buttonseperate}/>
-            <Button
-                onPress={() => {setNoBall(0), Alert.alert('No balls reset.')}} title="Reset No Balls" color="#ff453a"
-            />
-            <View style={styles.buttonseperate}/>
-            <Button
-                onPress={() => {setTarget(count), Alert.alert('Target set/reset.')}} title="Set/Reset Target" color="#64d3ff"
-            />
+
+            {/*Deprecated*/}
+
+            {/*<Button*/}
+            {/*    onPress={() => {setRuns(0), Alert.alert('Runs reset.')}} title="Reset Runs" color="#ff453a"*/}
+            {/*/>*/}
+            {/*<View style={styles.buttonseperate}/>*/}
+            {/*<Button*/}
+            {/*    onPress={() => {setWide(0), Alert.alert('Wides reset.')}} title="Reset Wides" color="#ff453a"*/}
+            {/*/>*/}
+            {/*<View style={styles.buttonseperate}/>*/}
+            {/*<Button*/}
+            {/*    onPress={() => {setNoBall(0), Alert.alert('No balls reset.')}} title="Reset No Balls" color="#ff453a"*/}
+            {/*/>*/}
+            {/*<View style={styles.buttonseperate}/>*/}
+
         </View>
     </SafeAreaView>
     );
