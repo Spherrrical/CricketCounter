@@ -7,7 +7,7 @@ const Overs = () => {
     const [balls, setBalls] = useState(0);
 
     useEffect(() => {
-        if (balls > 6) {
+        if (balls == 6) {
             setBalls(0);
             setOvers(overs + 1);
         }
