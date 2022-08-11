@@ -20,7 +20,7 @@ const Runs = () => {
         ActionSheetIOS.showActionSheetWithOptions(
             {
                 options: ["Cancel", "Reset No Balls", "Reset Wides", "Reset Runs"],
-                destructiveButtonIndex: 3,
+                destructiveButtonIndex: 4,
                 cancelButtonIndex: 0,
                 userInterfaceStyle: "dark",
             },

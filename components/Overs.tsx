@@ -16,7 +16,7 @@ const Overs = () => {
         ActionSheetIOS.showActionSheetWithOptions(
             {
                 options: ["Cancel", "Reset Balls", "Reset Overs"],
-                destructiveButtonIndex: 2,
+                destructiveButtonIndex: 3,
                 cancelButtonIndex: 0,
                 userInterfaceStyle: "dark",
             },
